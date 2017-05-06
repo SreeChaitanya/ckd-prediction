@@ -16,22 +16,6 @@ class MainHandler(tornado.web.RequestHandler):
         self.write("Hello world! New code here")
         print "MainHandler get request"
 
-# class HomeHandler(tornado.web.RequestHandler):
-#     def post(self):
-#         data = json.loads(self.request.body)
-#         print data
-#         self.write(data)
-#     def get(self):
-#         print "Homehandler get request"
-#         self.write("Home")
-#
-# def make_app():
-#     application = tornado.web.Application([
-#         (r"/", MainHandler),
-#         (r"/home", HomeHandler)
-#     ])
-#     return application
-
 class WebApp(tornado.web.Application):
     def __init__(self):
         autoreload.start()

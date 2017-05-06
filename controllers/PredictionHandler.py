@@ -4,3 +4,4 @@ class PredictionHandler():
 
     def get(self):
         self.__init()
+        self.write("Code block reached to Prediction Handler")
