@@ -1,0 +1,26 @@
+1. installed pip and python
+2. set up heroku account - soupspring47
+3. > pip install virtualenv
+4. > virtualenv --version
+
+5. Created a heroku project folder on desktop
+6. > virtualenv heroku_python_project
+
+https://devcenter.heroku.com/articles/getting-started-with-python#set-up
+
+7. Installing Heroku cmd line interface aka Toolbelt
+8. Download Heroku CLI for Windows 64
+9. INstall heroku, didnt install git as was already installed
+10. Set heroku path to env variables
+11. > heroku >email >password
+
+12. created a folder heroku_project. Terminal into it. 
+	> git init
+	> git clone https://github.com/heroku/python-getting-started.git
+    	> cd python-getting-started
+13. heroku create
+14. git push heroku master
+
+15. The application is now deployed. Ensure that at least one instance of the app is running:
+	> heroku ps:scale web=1
+16. > heroku open to open the app website
