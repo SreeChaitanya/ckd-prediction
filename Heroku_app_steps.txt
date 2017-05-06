@@ -1,3 +1,10 @@
+
+######################### TIPS #################################
+
+- To find and kill process : > netstat -ano|findstr 8080 > tskill <process-name>
+
+################################################################
+
 1. installed pip and python
 2. set up heroku account - soupspring47
 3. > pip install virtualenv
