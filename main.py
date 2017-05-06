@@ -29,17 +29,16 @@ def make_app():
         (r"/home", HomeHandler)
     ])
     return application
-
-    http_server = tornado.httpserver.HTTPServer(application)
-    port = int(os.environ.get("PORT", 5000))
-    http_server.listen(port)
-    tornado.ioloop.IOLoop.instance().start()
+    # http_server = tornado.httpserver.HTTPServer(application)
+    # port = int(os.environ.get("PORT", 5000))
+    # http_server.listen(port)
+    # tornado.ioloop.IOLoop.instance().start()
  
 if __name__ == "__main__":
     app = make_app()
-    #http_server = tornado.httpserver.HTTPServer(make_app())
-    port = int(os.environ.get("PORT", 5000))
-    #http_server.listen(port)
-    app.listen(5000)
+    http_server = tornado.httpserver.HTTPServer(make_app())
+    port = int(os.environ.get("PORT", 8080))
+    http_server.listen(port)
+    #app.listen(5000)
     print"Listening on port 5000"
     tornado.ioloop.IOLoop.current().start()
