@@ -23,12 +23,12 @@ class HomeHandler(tornado.web.RequestHandler):
         print "Homehandler get request"
         self.write("Home")
  
-def main():
+def make_app():
     application = tornado.web.Application([
         (r"/", MainHandler),
         (r"/home", HomeHandler)
     ])
-    return  application
+    #return  application
     http_server = tornado.httpserver.HTTPServer(application)
 
     port = int(os.environ.get("PORT", 5000))
@@ -37,7 +37,8 @@ def main():
     tornado.ioloop.IOLoop.instance().start()
  
 if __name__ == "__main__":
-    app = main()
-    app.listen(5000)
-    print"Listening on port 5000"
-    tornado.ioloop.IOLoop.current().start()
+    #app = 
+    make_app()
+    # app.listen(5000)
+    # print"Listening on port 5000"
+    # tornado.ioloop.IOLoop.current().start()
