@@ -51,8 +51,8 @@ class DemoHandler(tornado.web.RequestHandler):
 
 
 class WebApp(tornado.web.Application):
-    def __init__(self, config):
-        self.config = config
+    def __init__(self):#, config):
+        #self.config = config
         autoreload.start()
         print 'Application  Auto Reload...'
         rest_path = r'/api/001/'
@@ -60,21 +60,24 @@ class WebApp(tornado.web.Application):
                     (rest_path + r'predict/?', PredictionHandler.make_api())
                     ]
         settings = {
-            'static_path': config['static_path']
-            , 'template_path': config['template_path']
+            # 'static_path': config['static_path']
+            # , 'template_path': config['template_path']
         }
-        tornado.web.Application.__init__(self, handlers, **settings)
+        tornado.web.Application.__init__(self, handlers)#, **settings)
 
     def run(self, port=None, host=None):
-        if host is None:
-            host = self.config['bind_host']
-        if port is None:
-            port = self.config['bind_port']
+        port = int(os.environ.get("PORT", 8080))
+        # if host is None:
+        #     host = self.config['bind_host']
+        # if port is None:
+        #     port = self.config['bind_port']
         print "Listening on port :" + port
-        http_server = tornado.httpserver.HTTPServer(self)
-        http_server.listen(port)
-        #self.listen(port)
-        IOLoop.current().start()
+        #http_server = tornado.httpserver.HTTPServer(self)
+        #http_server.listen(port)
+        self.listen(port)
+        self.listen(port)
+        IOLoop.instance().start()
+        #IOLoop.current().start()
 
 
 def Main():
@@ -90,7 +93,10 @@ def Main():
     web_cfg['bind_port'] = options.port
     if web_cfg['bind_port'] == 8000:
         web_cfg['bind_port'] = app_config['server']['bind_port']
-    webapp = WebApp(web_cfg)
+
+    #webapp = WebApp(web_cfg)
+
+    webapp = WebApp()
     webapp.run()
  
 if __name__ == "__main__":
