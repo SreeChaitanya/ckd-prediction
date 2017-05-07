@@ -74,8 +74,9 @@ class WebApp(tornado.web.Application):
         else:
             listening_port = int(os.environ.get("PORT", port))
         self.listen(listening_port)
-        print"listening on port port : "
+        print"listening on port : "
         print listening_port
+        sys.stdout.flush()
         IOLoop.current().start()
 
 
@@ -95,18 +96,9 @@ def Main():
             web_cfg['bind_port'] = app_config['server']['bind_port']
     except Exception as e:
         print (e.message)
-        sys.stdout.flush()
-
 
     webapp = WebApp(web_cfg)
-    # webapp = WebApp()
     webapp.run()
  
 if __name__ == "__main__":
     Main()
-    # app = make_app()
-    # http_server = tornado.httpserver.HTTPServer(make_app())
-    # port = int(os.environ.get("PORT", 8080))
-    # http_server.listen(port)
-    # print"Listening on port : "+(str(port))
-    # tornado.ioloop.IOLoop.current().start()
