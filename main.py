@@ -71,7 +71,6 @@ class WebApp(tornado.web.Application):
         #     host = self.config['bind_host']
         # if port is None:
         #     port = self.config['bind_port']
-        print "Listening on port :" + port
         http_server = tornado.httpserver.HTTPServer(self)
         http_server.listen(port)
         #self.listen(port)
