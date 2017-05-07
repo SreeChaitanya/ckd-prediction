@@ -74,7 +74,7 @@ class WebApp(tornado.web.Application):
         http_server = tornado.httpserver.HTTPServer(self)
         http_server.listen(port)
         #self.listen(port)
-        IOLoop.instance().start()
+        IOLoop.current().start()
 
 
 def Main():
