@@ -66,7 +66,6 @@ class WebApp(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
     def run(self, port=None, host=None):
-
         if host is None:
             host = self.config['bind_host']
         if port is None:
@@ -74,12 +73,10 @@ class WebApp(tornado.web.Application):
             listening_port = int(os.environ.get("PORT", port))
         else:
             listening_port = int(os.environ.get("PORT", port))
-
         self.listen(listening_port)
-        print"listening on port po : "
+        print"listening on port port : "
         print listening_port
         IOLoop.current().start()
-        print "Loop Current started"
 
 
 def Main():
