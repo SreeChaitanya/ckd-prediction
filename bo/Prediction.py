@@ -1,4 +1,8 @@
+# --- API Controllers ---
 from bo.Base import BO_Base
+
+# --- Logger ---
+from logger import logger_error, logger_info, logger_warning
 
 
 class BO_Prediction(BO_Base):
@@ -6,9 +10,9 @@ class BO_Prediction(BO_Base):
     def __init__(self):
         pass
 
-    def disease_prediction(self, global_params):
+    def disease_prediction(self, prediction_params):
 
         # ----> Machine Learning Code goes here
-        print(global_params)
-        print "Code block @ disease prediction fn."
+        logger_info("Code block at Disease Prediction fn.")
+        logger_info("Parameters received : " + prediction_params)
         return True

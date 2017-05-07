@@ -1,6 +1,11 @@
 import json
+
+# --- API Controllers ---
 from controllers.RestClass import RestClass
 from bo.Prediction import BO_Prediction
+
+# --- Logger ---
+from logger import logger_error, logger_info, logger_warning
 
 
 class PredictionHandler(RestClass):
@@ -11,12 +16,10 @@ class PredictionHandler(RestClass):
     def get(self):
         self.__init()
         self.write("Code block reached to Prediction Handler")
-        print("Code @ " + self.name + " GET")
+        logger_info("Code @ " + self.name + " GET")
 
     def post(self):
         self.__init()
-        print("Code @ " + self.name + " POST")
-        global_params = json.loads(self.request.body)
-        prediction_result = self.bPrediction.disease_prediction(global_params)
-        print prediction_result
+        logger_info("Code @ " + self.name + " POST")
+        prediction_result = self.bPrediction.disease_prediction(json.loads(self.request.body))
         self.write(str(prediction_result))

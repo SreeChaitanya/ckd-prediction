@@ -1,4 +1,3 @@
-
 # --- Tornado web framework libraries ---
 import tornado.httpserver
 import tornado.ioloop
@@ -9,6 +8,9 @@ from tornado.options import define, options
 
 # --- Misc python libraries ---
 import sys, os
+
+# --- Logger ---
+from logger import logger_error, logger_info, logger_warning
 
 # --- Config file library ---
 import ConfigParser
@@ -48,14 +50,14 @@ def load_config(filename):
 class DemoHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello world!")
-        print "Demo Handler get request"
+        logger_info("Demo Handler GET Request")
 
 
 class WebApp(tornado.web.Application):
     def __init__(self, config):
         self.config = config
         autoreload.start()
-        print 'Application  Auto Reload...'
+        logger_info('Application reloaded')
         rest_path = r'/api/001/'
         handlers = [('/?', DemoHandler),
                     (rest_path + r'predict/?', PredictionHandler.make_api())
@@ -75,9 +77,9 @@ class WebApp(tornado.web.Application):
         else:
             listening_port = int(os.environ.get("PORT", port))
         self.listen(listening_port)
-        print"listening on port : "
-        print listening_port
-        sys.stdout.flush()
+
+        # --- Record actual server port number ---
+        logger_info('*** Listening on Server (port: %s) ***' % listening_port)
         IOLoop.current().start()
 
 
@@ -85,6 +87,7 @@ def Main():
     tornado.options.parse_command_line()
 
     # ---> Load the app config data
+    logger_info('Loading config file: ' + appcfg_filename)
     try:
         app_config = load_config(appcfg_filename)
         web_cfg = {}
@@ -96,8 +99,10 @@ def Main():
         if web_cfg['bind_port'] == 8000:
             web_cfg['bind_port'] = app_config['server']['bind_port']
     except Exception as e:
-        print (e.message)
+        logger_error('Exception raised during web_cfg building : '+e.message)
 
+    # --- Launch the web application ---
+    logger_info('*** Initialize web listener (port: %s) ***' % web_cfg['bind_port'])
     webapp = WebApp(web_cfg)
     webapp.run()
  
