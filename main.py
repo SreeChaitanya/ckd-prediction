@@ -67,12 +67,13 @@ class WebApp(tornado.web.Application):
 
     def run(self, port=None, host=None):
         #port = int(os.environ.get("PORT", 8080))
-        # try:
-        #     #port = self.config['bind_port']
-        # except Exception as e:
-        #     print(e.message)
-        #     port = int(os.environ.get("PORT", 8080))
-        port = self.config['bind_host']
+        try:
+            port = self.config['bind_port']
+        except Exception as e:
+            print(e.message)
+            port = int(os.environ.get("PORT", 8080))
+            sys.stdout.flush()
+
         # if host is None:
         #     host = self.config['bind_host']
         # if port is None:
@@ -100,6 +101,7 @@ def Main():
             web_cfg['bind_port'] = app_config['server']['bind_port']
     except Exception as e:
         print (e.message)
+        sys.stdout.flush()
 
 
     webapp = WebApp(web_cfg)
