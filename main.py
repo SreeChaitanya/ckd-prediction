@@ -51,8 +51,8 @@ class DemoHandler(tornado.web.RequestHandler):
 
 
 class WebApp(tornado.web.Application):
-    def __init__(self):#, config):
-        #self.config = config
+    def __init__(self, config):
+        self.config = config
         autoreload.start()
         print 'Application  Auto Reload...'
         rest_path = r'/api/001/'
@@ -92,9 +92,8 @@ def Main():
     if web_cfg['bind_port'] == 8000:
         web_cfg['bind_port'] = app_config['server']['bind_port']
 
-    #webapp = WebApp(web_cfg)
-
-    webapp = WebApp()
+    webapp = WebApp(web_cfg)
+    # webapp = WebApp()
     webapp.run()
  
 if __name__ == "__main__":
