@@ -60,8 +60,8 @@ class WebApp(tornado.web.Application):
                     (rest_path + r'predict/?', PredictionHandler.make_api())
                     ]
         settings = {
-            # 'static_path': config['static_path']
-            # , 'template_path': config['template_path']
+             'static_path': config['static_path']
+             , 'template_path': config['template_path']
         }
         tornado.web.Application.__init__(self, handlers, **settings)
 
