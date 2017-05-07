@@ -66,30 +66,18 @@ class WebApp(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
     def run(self, port=None, host=None):
-        port = int(os.environ.get("PORT", 8080))
-        print "port value : "
-        print port
-        po = int(self.config['bind_port'])
-        print "po value : "
-        print po
 
-        # try:
-        #     port = self.config['bind_port']
-        # except Exception as e:
-        #     print(e.message)
-        #     port = int(os.environ.get("PORT", 8080))
-        #     sys.stdout.flush()
+        if host is None:
+            host = self.config['bind_host']
+        if port is None:
+            port = int(self.config['bind_port'])
+            listening_port = int(os.environ.get("PORT", port))
+        else:
+            listening_port = int(os.environ.get("PORT", port))
 
-        # if host is None:
-        #     host = self.config['bind_host']
-        # if port is None:
-        #     port = self.config['bind_port']
-        #http_server = tornado.httpserver.HTTPServer(self)
-        #http_server.listen(po)
-        self.listen(po)
+        self.listen(listening_port)
         print"listening on port po : "
-        print po
-        #IOLoop.instance().start()
+        print listening_port
         IOLoop.current().start()
         print "Loop Current started"
 
