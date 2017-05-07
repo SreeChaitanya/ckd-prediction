@@ -67,6 +67,8 @@ class WebApp(tornado.web.Application):
 
     def run(self, port=None, host=None):
         port = int(os.environ.get("PORT", 8080))
+        print "port value : "
+        print port
         po = int(self.config['bind_port'])
         print "po value : "
         print po
@@ -86,7 +88,7 @@ class WebApp(tornado.web.Application):
         #http_server.listen(po)
         self.listen(po)
         print"listening on port po : "
-        print port
+        print po
         #IOLoop.instance().start()
         IOLoop.current().start()
         print "Loop Current started"
