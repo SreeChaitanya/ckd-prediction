@@ -63,7 +63,7 @@ class WebApp(tornado.web.Application):
             # 'static_path': config['static_path']
             # , 'template_path': config['template_path']
         }
-        tornado.web.Application.__init__(self, handlers)#, **settings)
+        tornado.web.Application.__init__(self, handlers, **settings)
 
     def run(self, port=None, host=None):
         port = int(os.environ.get("PORT", 8080))
