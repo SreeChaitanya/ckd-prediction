@@ -72,10 +72,9 @@ class WebApp(tornado.web.Application):
         # if port is None:
         #     port = self.config['bind_port']
         print "Listening on port :" + port
-        #http_server = tornado.httpserver.HTTPServer(self)
-        #http_server.listen(port)
-        self.listen(port)
-        self.listen(port)
+        http_server = tornado.httpserver.HTTPServer(self)
+        http_server.listen(port)
+        #self.listen(port)
         IOLoop.instance().start()
         #IOLoop.current().start()
 
