@@ -66,7 +66,8 @@ class WebApp(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
     def run(self, port=None, host=None):
-        port = int(os.environ.get("PORT", 8080))
+        #port = int(os.environ.get("PORT", 8080))
+        port = self.config['bind_port']
         # if host is None:
         #     host = self.config['bind_host']
         # if port is None:
