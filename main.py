@@ -67,7 +67,12 @@ class WebApp(tornado.web.Application):
 
     def run(self, port=None, host=None):
         #port = int(os.environ.get("PORT", 8080))
-        port = self.config['bind_port']
+        # try:
+        #     #port = self.config['bind_port']
+        # except Exception as e:
+        #     print(e.message)
+        #     port = int(os.environ.get("PORT", 8080))
+        port = self.config['bind_host']
         # if host is None:
         #     host = self.config['bind_host']
         # if port is None:
@@ -83,15 +88,19 @@ def Main():
     tornado.options.parse_command_line()
 
     # ---> Load the app config data
-    app_config = load_config(appcfg_filename)
-    web_cfg = {}
-    web_cfg['app_config'] = app_config
-    web_cfg['template_path'] = os.path.join(os.path.dirname(__file__), 'templates')
-    web_cfg['static_path'] = os.path.join(os.path.dirname(__file__), 'static')
-    web_cfg['bind_host'] = app_config['server']['bind_host']
-    web_cfg['bind_port'] = options.port
-    if web_cfg['bind_port'] == 8000:
-        web_cfg['bind_port'] = app_config['server']['bind_port']
+    try:
+        app_config = load_config(appcfg_filename)
+        web_cfg = {}
+        web_cfg['app_config'] = app_config
+        web_cfg['template_path'] = os.path.join(os.path.dirname(__file__), 'templates')
+        web_cfg['static_path'] = os.path.join(os.path.dirname(__file__), 'static')
+        web_cfg['bind_host'] = app_config['server']['bind_host']
+        web_cfg['bind_port'] = options.port
+        if web_cfg['bind_port'] == 8000:
+            web_cfg['bind_port'] = app_config['server']['bind_port']
+    except Exception as e:
+        print (e.message)
+
 
     webapp = WebApp(web_cfg)
     # webapp = WebApp()
