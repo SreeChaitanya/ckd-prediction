@@ -66,7 +66,7 @@ class WebApp(tornado.web.Application):
         tornado.web.Application.__init__(self, handlers, **settings)
 
     def run(self, port=None, host=None):
-        #port = int(os.environ.get("PORT", 8080))
+        port = int(os.environ.get("PORT", 8080))
         po = int(self.config['bind_port'])
         print "po value : "
         print po
@@ -85,8 +85,8 @@ class WebApp(tornado.web.Application):
         http_server = tornado.httpserver.HTTPServer(self)
         http_server.listen(po)
         #self.listen(po)
-        IOLoop.instance().start()
-        #IOLoop.current().start()
+        #IOLoop.instance().start()
+        IOLoop.current().start()
 
 
 def Main():
