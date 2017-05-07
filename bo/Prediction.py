@@ -14,5 +14,5 @@ class BO_Prediction(BO_Base):
 
         # ----> Machine Learning Code goes here
         logger_info("Code block at Disease Prediction fn.")
-        logger_info("Parameters received : " + prediction_params)
+        logger_info("Parameters received : " + str(prediction_params))
         return True
