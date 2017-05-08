@@ -19,6 +19,9 @@ class BO_Prediction(BO_Base):
         logger_info("Code block at Disease Prediction fn.")
         logger_info("Parameters received : " + str(prediction_params))
         rf = pickle.load(open('ckd_prediction_model.sav', 'rb'))
-        Y_pred = rf.predict(dataset)
+        try:
+            Y_pred = rf.predict(dataset)
+        except ValueError as error:
+            return error.message
 
         return Y_pred[0]
