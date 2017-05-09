@@ -58,4 +58,12 @@ To find out the IP address of your desktop:
   Hold SHIFT, right click the folder you're in, then select Open command window here.
   Then rename the file in the command line, with ren gitignore.txt .gitignore.
 
-################################################################
+############# Android Studio git-bitbucket set up ################
+
+1. Open android studio -> VCS -> ENable VCS -> GIT
+2. Modified git-ignore files
+3. Created Repo in bitbucket.
+4. cd to android app location -> git remote add origin https://Soup7@bitbucket.org/Soup7/androidhealthpredictor.git
+5. git add -> commit -> push origin master
+
+###################################################################
