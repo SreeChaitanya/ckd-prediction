@@ -22,4 +22,5 @@ class PredictionHandler(RestClass):
         self.__init()
         logger_info("Code @ " + self.name + " POST")
         prediction_result = self.bPrediction.disease_prediction(json.loads(self.request.body))
-        self.write(str(prediction_result))
+        json_response = json.dumps({'result': str(prediction_result)})
+        self.write(json_response)

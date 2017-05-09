@@ -36,6 +36,16 @@ SET UP steps to add remote:
 2. cd to local repo > git remote add origin https://Soup7@bitbucket.org/Soup7/healthpredictor.git
 3. git push -u origin master
 
+############### Access PC localhost from Android ################
+
+If both your desktop and phone are connected to the same WiFi (or any other local network), 
+then use your desktop IP address assigned by the router (not localhost and not 127.0.0.1).
+
+To find out the IP address of your desktop:
+
+    type into the command line ipconfig (Windows) or ifconfig (Unix)
+    there's going to be a bunch of IP's
+    try all of them (except the forementioned localhost and 127.0.0.1)
 
 ######################### TIPS #################################
 
