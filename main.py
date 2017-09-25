@@ -6,6 +6,8 @@ import tornado.web
 from tornado import autoreload
 from tornado.options import define, options
 
+import json
+
 # --- Misc python libraries ---
 import sys, os
 
@@ -49,9 +51,12 @@ def load_config(filename):
 
 class DemoHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello world!")
+        self.write("Hello world! Health predictor app here!")
         logger_info("Demo Handler GET Request")
 
+    def post(self):
+        logger_info('POST method hit')
+        self.write("Test write")
 
 class WebApp(tornado.web.Application):
     def __init__(self, config):
